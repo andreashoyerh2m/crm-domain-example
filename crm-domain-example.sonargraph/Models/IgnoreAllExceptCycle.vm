@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<virtualModel version="8.9.0.0">
+    <description></description>
+    <resolutions>
+        <ignore date="2016-04-29T07:40:37.869Z" description="">
+            <type class="com.hello2morrow.sonargraph.core.model.element.CoreIssueId" name="EmptyArchitectureElement"></type>
+            <elementPattern type="Wildcard">Files:BaseDirectory:SystemDirectory:Architecture:application.arc:Application:Foundation</elementPattern>
+        </ignore>
+        <ignore date="2016-04-29T13:22:47.556Z" description="">
+            <type class="com.hello2morrow.sonargraph.core.model.element.CoreIssueId" name="DuplicateCodeBlock"></type>
+            <elementPattern type="FullyQualifiedName">Files:BaseDirectory:SystemDirectory:Analyzers:DuplicateCode:./IgnoreAllExceptCycle.vm:56f2a5d4c8bffc82fc0d51c2572ec0df|8764336fc86f1d6d99d1ea5d77d5f7fc</elementPattern>
+            <matching info="3 occurrences with 50 line(s) found in 3 file(s)">
+                <elementPattern type="FullyQualifiedName">Workspace:crm-domain-example:./src/java:com:hello2morrow:ddaexample:business:user:data:test:RoleDataManager.java</elementPattern>
+                <elementPattern type="FullyQualifiedName">Workspace:crm-domain-example:./src/java:com:hello2morrow:ddaexample:business:user:data:test:ServerCommandDataManager.java</elementPattern>
+                <elementPattern type="FullyQualifiedName">Workspace:crm-domain-example:./src/java:com:hello2morrow:ddaexample:business:user:data:test:UserDataManager.java</elementPattern>
+            </matching>
+        </ignore>
+        <ignore date="2016-04-29T13:23:24.829Z" description="">
+            <type class="Architecture" name="ArchitectureViolation" descriptor="./application.arc"></type>
+            <dependencyPattern type="Wildcard" from="Workspace:crm-domain-example:./src/java:com:hello2morrow:ddaexample:business:distributionpartner:controller:DistributionPartnerController.java:DistributionPartnerController:wrong" to="Workspace:crm-domain-example:./src/java:com:hello2morrow:dda:business:common:startup:SetupFactories.java:SetupFactories"></dependencyPattern>
+            <dependencyPattern type="Wildcard" from="Workspace:crm-domain-example:./src/java:com:hello2morrow:ddaexample:business:distributionpartner:controller:DistributionPartnerController.java:DistributionPartnerController:assignCustomersToSalesAssistant(com.hello2morrow.ddaexample.business.user.service.ContextDto,com.hello2morrow.dda.foundation.common.ObjectIdIf[],com.hello2morrow.dda.foundation.common.ObjectIdIf)" to="Workspace:crm-domain-example:./src/java:com:hello2morrow:dda:business:common:startup:SetupFactories.java:SetupFactories:initialize()"></dependencyPattern>
+        </ignore>
+    </resolutions>
+</virtualModel>

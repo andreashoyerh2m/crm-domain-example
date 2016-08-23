@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<analyzerConfiguration version="8.9.0.0" analyzer="ScriptRunner">
+    <stringEntry value="DeprecatedTypeAggregator" name="0:./Java/UsageOfAnnotation.scr"></stringEntry>
+</analyzerConfiguration>

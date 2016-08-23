@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<virtualModel version="8.9.0.0">
+    <resolutions>
+        <ignore date="2015-10-31T14:04:10.199Z" description="Exclude equals()">
+            <type class="com.hello2morrow.sonargraph.core.model.element.CoreIssueId" name="ThresholdViolation" descriptor="ThresholdViolation:CoreModifiedExtendedCcn:Routine"></type>
+            <elementPattern type="Wildcard">Workspace:module:./crm-domain-example/src/java:**.java:**:equals(java.lang.Object)</elementPattern>
+        </ignore>
+        <ignore date="2016-04-29T07:38:19.822Z" description="">
+            <type class="com.hello2morrow.sonargraph.core.model.element.CoreIssueId" name="EmptyArchitectureElement"></type>
+            <elementPattern type="Wildcard">Files:BaseDirectory:SystemDirectory:Architecture:application.arc:Application:Foundation</elementPattern>
+        </ignore>
+    </resolutions>
+</virtualModel>
