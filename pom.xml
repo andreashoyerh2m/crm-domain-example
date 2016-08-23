@@ -61,7 +61,7 @@
             <version>8.9.2</version>
             <configuration>
               <reportDirectory>target/report</reportDirectory>
-              <reportFileName>sonargraph-report</reportFileName>
+              <reportFileName>sonargraph-report-123</reportFileName>
               <reportType>full</reportType>
               <reportFormat>xml,html</reportFormat>
               <autoUpdate>false</autoUpdate>
