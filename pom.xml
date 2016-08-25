@@ -58,7 +58,7 @@
           <plugin>
             <groupId>com.hello2morrow</groupId>
             <artifactId>sonargraph-maven-plugin</artifactId>
-            <version>8.9.2</version>
+            <version>9.0.0</version>
             <configuration>
               <reportDirectory>target/report</reportDirectory>
               <reportFileName>sonargraph-report-123</reportFileName>
