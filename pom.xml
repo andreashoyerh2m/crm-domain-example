@@ -64,7 +64,7 @@
               <reportFileName>sonargraph-report-123</reportFileName>
               <reportType>full</reportType>
               <reportFormat>xml,html</reportFormat>
-              <autoUpdate>false</autoUpdate>
+              <autoUpdate>true</autoUpdate>
               <activationCode>36E2-0F3E-643F-B4F2</activationCode>
               <logLevel>info</logLevel>
               <failSet>
