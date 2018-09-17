@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
-<analyzerConfiguration version="8.9.0.0" analyzer="ScriptRunner">
+<analyzerConfiguration version="9.8.1.523" analyzer="ScriptRunner">
     <stringEntry value="DeprecatedTypeAggregator" name="0:./Java/UsageOfAnnotation.scr"></stringEntry>
+    <stringEntry value="Default" name="1:./Java/SuperTypeUsesSubType.xml"></stringEntry>
 </analyzerConfiguration>

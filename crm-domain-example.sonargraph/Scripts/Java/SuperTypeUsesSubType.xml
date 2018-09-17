@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<script version="9.8.1.523">
+    <description></description>
+    <source><![CDATA[ICoreVisitor visitor = coreAccess.createVisitor()
+
+int warnings = 0
+
+def getSubTypes(TypeAccess type)
+{
+    List<TypeAccess> subTypes = new ArrayList<>()
+    
+    type.getReferencingElements(Aggregator.TYPE, false, DependencyKind.EXTENDS, DependencyKind.IMPLEMENTS).each()
+    {
+        TypeAccess subType ->
+        subTypes.add(subType)
+        subTypes.addAll(getSubTypes(subType))
+    }
+    return subTypes
+}
+
+visitor.onExternal
+{
+    return;
+}
+
+visitor.onType()
+{
+    TypeAccess type ->
+    
+    if(type.isExcluded() || type.ignoreIssues())
+    {
+        return
+    }
+    
+    def subTypes = getSubTypes(type)
+    
+    if (subTypes.isEmpty())
+    {
+        return
+    }
+    
+    SourceFileAccess sourceFile = type.getSourceFile();
+    
+    def outDeps = type.getOutgoingDependenciesRecursively(Aggregator.TYPE, true)
+    
+    for (AggregatedDependencyAccess dep : outDeps)
+    {
+        TypeAccess toType = (TypeAccess) dep.getTo()
+        
+        if (toType.getSourceFile().equals(sourceFile))
+        {
+            continue;
+        }
+        if (subTypes.contains(toType))
+        {
+            result.addWarningIssue(dep, "Supertype uses subtype", "Reference to subtype ${toType.getShortName()}")
+            warnings += dep.getNumberOfDependencies()
+        }
+    }
+}
+
+coreAccess.visitParserModel(visitor);
+
+
+println "Found ${warnings} warnings"
+MetricIdAccess id = coreAccess.getOrCreateMetricId("SupertypeUsesSubtype","Supertype uses subtype", "A super type must not know its subtypes", false, 0, 0);
+result.addMetricValue(id, coreAccess, warnings)
+
+]]></source>
+    <parameterDefinitions>
+        <parameterDefinition name="timeout" type="Integer" description="When scripts are scheduled for automated execution they time out after the specified number of seconds. The timeout must be greater than '0'." defaultValue="10" candidates=""></parameterDefinition>
+        <parameterDefinition name="output" type="String" description="When a path is specified the output of the script is written into this file. The use of an absolute path (i.e. starting with '/' or 'C:/') is not recommended. It might not be cross-platform compatible." defaultValue="" candidates=""></parameterDefinition>
+    </parameterDefinitions>
+    <languages>
+        <language>Java</language>
+    </languages>
+</script>
