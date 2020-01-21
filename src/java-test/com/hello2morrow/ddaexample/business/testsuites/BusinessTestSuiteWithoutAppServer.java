@@ -25,7 +25,7 @@ import com.hello2morrow.ddaexample.business.user.service.UserControllerServiceTe
 
 public class BusinessTestSuiteWithoutAppServer extends TestSuite
 {
-    private static Logger s_Logger = Logger.getLogger(BusinessTestSuiteWithoutAppServer.class);
+    private static Logger s_Logger = LogManager.getLogger(BusinessTestSuiteWithoutAppServer.class);
 
     public static Test suite() throws Exception
     {

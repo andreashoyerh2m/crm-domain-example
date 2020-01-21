@@ -8,13 +8,14 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.foundation.common.exception.ExceptionUtility;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class ServiceFactory
 {
-    private static Logger s_Logger = Logger.getLogger(ServiceFactory.class);
+    private static Logger s_Logger = LogManager.getLogger(ServiceFactory.class);
     private static ServiceFactory s_Instance = null;
     private final Map m_ServiceToImplementation = new HashMap();
 
@@ -25,8 +26,7 @@ public final class ServiceFactory
         InputStream in = ServiceFactory.class.getResourceAsStream(properties);
         if (in == null)
         {
-            throw new MissingResourceException("properties file not found = " + properties,
-                            ServiceFactory.class.getName(), properties);
+            throw new MissingResourceException("properties file not found = " + properties, ServiceFactory.class.getName(), properties);
         }
         Properties loadedProperties = new Properties();
         loadedProperties.load(in);

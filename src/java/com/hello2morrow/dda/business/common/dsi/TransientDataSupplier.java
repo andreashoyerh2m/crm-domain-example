@@ -4,7 +4,6 @@ import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 import com.hello2morrow.dda.foundation.common.exception.BusinessException;
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
-
 public abstract class TransientDataSupplier implements DataSupplierIf
 {
     private final DomainObjectId m_ObjectId;
@@ -51,9 +50,9 @@ public abstract class TransientDataSupplier implements DataSupplierIf
         mapContentTo(created);
         return created;
     }
-    
-    protected abstract DataSupplierIf createPersistentDataSupplier()  throws TechnicalException;
-    
+
+    protected abstract DataSupplierIf createPersistentDataSupplier() throws TechnicalException;
+
     protected void mapContentTo(DataSupplierIf persistent) throws BusinessException, TechnicalException
     {
         assert persistent != null;

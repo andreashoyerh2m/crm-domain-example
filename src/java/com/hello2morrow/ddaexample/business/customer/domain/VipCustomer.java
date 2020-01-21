@@ -13,8 +13,7 @@ public class VipCustomer extends Customer
     /**
      * @dda-dmi-find
      */
-    public static VipCustomer[] findVipCustomerByFirstNameAndLastName(String firstName, String lastName)
-                    throws TechnicalException
+    public static VipCustomer[] findVipCustomerByFirstNameAndLastName(String firstName, String lastName) throws TechnicalException
     {
         assert firstName != null;
         assert firstName.length() > 0;
@@ -26,7 +25,7 @@ public class VipCustomer extends Customer
     }
 
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public VipCustomer(VipCustomerDsi dataSupplier, DataSupplierReadMarker marker)
     {

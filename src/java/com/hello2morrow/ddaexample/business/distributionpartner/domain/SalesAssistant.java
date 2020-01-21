@@ -28,7 +28,7 @@ public final class SalesAssistant extends Person
     }
 
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public SalesAssistant(SalesAssistantDsi dataSupplier, DataSupplierReadMarker marker)
     {
@@ -37,8 +37,7 @@ public final class SalesAssistant extends Person
 
     public SalesAssistant()
     {
-        super((SalesAssistantDsi) getDataManager(SalesAssistantDsi.class).createDataSupplier(SalesAssistantDsi.class,
-                        true));
+        super((SalesAssistantDsi) getDataManager(SalesAssistantDsi.class).createDataSupplier(SalesAssistantDsi.class, true));
     }
 
     /**

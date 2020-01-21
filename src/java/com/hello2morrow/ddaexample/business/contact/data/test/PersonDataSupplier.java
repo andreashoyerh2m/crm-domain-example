@@ -4,51 +4,50 @@
 
 package com.hello2morrow.ddaexample.business.contact.data.test;
 
-import com.hello2morrow.ddaexample.business.contact.dsi.PersonDsi;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectId;
+import com.hello2morrow.ddaexample.business.contact.dsi.PersonDsi;
 
-public class PersonDataSupplier extends com.hello2morrow.dda.business.common.dsi.TestDataSupplier
-	implements PersonDsi
+public class PersonDataSupplier extends com.hello2morrow.dda.business.common.dsi.TestDataSupplier implements PersonDsi
 {
-	protected PersonDataSupplier(DomainObjectId id)
-	{
-		super(id);
-	}
+    protected PersonDataSupplier(DomainObjectId id)
+    {
+        super(id);
+    }
 
-	private java.lang.String m_FirstName = null; 
+    private java.lang.String m_FirstName = null;
 
-	public java.lang.String getFirstName()
-	{
-		return m_FirstName;
-	}
+    public java.lang.String getFirstName()
+    {
+        return m_FirstName;
+    }
 
-	public void setFirstName(java.lang.String set)
-	{
-		m_FirstName = set;
-	}
+    public void setFirstName(java.lang.String set)
+    {
+        m_FirstName = set;
+    }
 
-	private java.lang.String m_LastName = null; 
+    private java.lang.String m_LastName = null;
 
-	public java.lang.String getLastName()
-	{
-		return m_LastName;
-	}
+    public java.lang.String getLastName()
+    {
+        return m_LastName;
+    }
 
-	public void setLastName(java.lang.String set)
-	{
-		m_LastName = set;
-	}
+    public void setLastName(java.lang.String set)
+    {
+        m_LastName = set;
+    }
 
-	private com.hello2morrow.ddaexample.business.contact.dsi.AddressDsi m_Address = null;
+    private com.hello2morrow.ddaexample.business.contact.dsi.AddressDsi m_Address = null;
 
-	public com.hello2morrow.ddaexample.business.contact.dsi.AddressDsi getAddress()
-	{
-		return m_Address;
-	}
+    public com.hello2morrow.ddaexample.business.contact.dsi.AddressDsi getAddress()
+    {
+        return m_Address;
+    }
 
-	public void setAddress(com.hello2morrow.ddaexample.business.contact.dsi.AddressDsi set)
-	{
-		m_Address = set;
-	}
+    public void setAddress(com.hello2morrow.ddaexample.business.contact.dsi.AddressDsi set)
+    {
+        m_Address = set;
+    }
 
 }

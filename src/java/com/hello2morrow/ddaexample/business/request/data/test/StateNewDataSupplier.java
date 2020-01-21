@@ -4,20 +4,19 @@
 
 package com.hello2morrow.ddaexample.business.request.data.test;
 
-import com.hello2morrow.ddaexample.business.request.dsi.StateNewDsi;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectId;
+import com.hello2morrow.ddaexample.business.request.dsi.StateNewDsi;
 
-public class StateNewDataSupplier extends com.hello2morrow.ddaexample.business.request.data.test.StateDataSupplier
-	implements StateNewDsi
+public class StateNewDataSupplier extends com.hello2morrow.ddaexample.business.request.data.test.StateDataSupplier implements StateNewDsi
 {
-	protected StateNewDataSupplier(DomainObjectId id)
-	{
-		super(id);
-	}
+    protected StateNewDataSupplier(DomainObjectId id)
+    {
+        super(id);
+    }
 
-	public StateNewDataSupplier()
-	{
-		super(new DomainObjectId(StateNewDsi.class));
-	}
+    public StateNewDataSupplier()
+    {
+        super(new DomainObjectId(StateNewDsi.class));
+    }
 
 }

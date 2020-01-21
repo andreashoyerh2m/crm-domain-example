@@ -11,7 +11,7 @@ import com.hello2morrow.ddaexample.business.request.dsi.StateDsi;
 public abstract class State extends DomainObjectWithDataSupplier
 {
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public State(StateDsi dsi, DataSupplierReadMarker marker)
     {

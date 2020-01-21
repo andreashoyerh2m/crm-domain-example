@@ -1,10 +1,10 @@
 package com.hello2morrow.dda.business.common.dsi;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Base class for domain objects.
@@ -12,13 +12,14 @@ import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 public abstract class DomainObject implements DomainObjectIf
 {
     protected static final String LINE_SEPARATOR = System.getProperty("line.separator");
-    private static Logger s_Logger = Logger.getLogger(DomainObject.class);
+    private static Logger s_Logger = LogManager.getLogger(DomainObject.class);
     private DataSupplierIf m_DataSupplier;
     private int m_HashCode;
     private boolean m_IsMarkedDeleted;
 
     /**
      * User for creation from subclasses
+     * 
      * @param dataSupplier
      */
     public DomainObject(DataSupplierIf dataSupplier)
@@ -73,9 +74,8 @@ public abstract class DomainObject implements DomainObjectIf
     }
 
     /**
-     * Callback for the associated data supplier. If the associated data
-     * supplier gets deleted the corresponding domain object is marked and
-     * removed from the cache.
+     * Callback for the associated data supplier. If the associated data supplier gets deleted the corresponding domain object is marked and removed
+     * from the cache.
      */
     public final void markDeleted(DomainObjectId aId)
     {

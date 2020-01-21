@@ -23,9 +23,8 @@ public final class SetupFactories
 
     private SetupFactories()
     {
-        //make it unaccessible
+        // make it unaccessible
     }
-
 
     // SetupFactories
     public static synchronized void initialize()

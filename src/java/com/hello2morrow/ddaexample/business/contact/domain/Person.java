@@ -11,12 +11,12 @@ import com.hello2morrow.ddaexample.business.contact.dsi.PersonDsi;
 public abstract class Person extends DomainObjectWithDataSupplier
 {
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public Person(PersonDsi dataSupplier, DataSupplierReadMarker marker)
     {
         super(dataSupplier, marker);
-//        new SQLException();
+        //        new SQLException();
     }
 
     /**

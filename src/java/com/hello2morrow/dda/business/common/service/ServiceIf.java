@@ -5,5 +5,5 @@ package com.hello2morrow.dda.business.common.service;
  */
 public interface ServiceIf
 {
-    //marker interface
+    // marker interface
 }

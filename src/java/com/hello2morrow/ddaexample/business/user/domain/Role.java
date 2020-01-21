@@ -1,20 +1,20 @@
 package com.hello2morrow.ddaexample.business.user.domain;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.business.common.dsi.DataSupplierReadMarker;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectWithDataSupplier;
 import com.hello2morrow.dda.foundation.common.exception.AssertionUtility;
 import com.hello2morrow.ddaexample.business.user.dsi.RoleDmi;
 import com.hello2morrow.ddaexample.business.user.dsi.RoleDsi;
 import com.hello2morrow.ddaexample.business.user.dsi.ServerCommandDsi;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @dda-generate-cmp
  */
 public final class Role extends DomainObjectWithDataSupplier
 {
-    private static Logger s_Logger = Logger.getLogger(Role.class);
+    private static Logger s_Logger = LogManager.getLogger(Role.class);
 
     /**
      * @dda-dmi-find
@@ -39,7 +39,7 @@ public final class Role extends DomainObjectWithDataSupplier
     }
 
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public Role(RoleDsi dsi, DataSupplierReadMarker marker)
     {
@@ -84,8 +84,7 @@ public final class Role extends DomainObjectWithDataSupplier
     public void setServerCommands(ServerCommand[] serverCommands)
     {
         assert AssertionUtility.checkArray(serverCommands);
-        ((RoleDsi) getDataSupplier()).setServerCommands((ServerCommandDsi[]) getDataSuppliers(serverCommands,
-                        ServerCommandDsi.class));
+        ((RoleDsi) getDataSupplier()).setServerCommands((ServerCommandDsi[]) getDataSuppliers(serverCommands, ServerCommandDsi.class));
     }
 
     boolean hasServerCommand(ServerCommand serverCommand)

@@ -6,7 +6,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.hello2morrow.dda.business.common.dsi.DomainObject;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectWithDataSupplier;
@@ -14,14 +15,12 @@ import com.hello2morrow.dda.business.common.service.Dto;
 import com.hello2morrow.dda.foundation.common.exception.ExceptionUtility;
 
 /**
- * Creates data transfer objects for domain objects.
- * Enables transparent creation of data transfer objects from clients
- * considering the type hierarchy. Provides the invocation start point
- * of mapping functionality.
+ * Creates data transfer objects for domain objects. Enables transparent creation of data transfer objects from clients considering the type
+ * hierarchy. Provides the invocation start point of mapping functionality.
  */
 public final class DtoManager
 {
-    private static Logger s_Logger = Logger.getLogger(DtoManager.class);
+    private static Logger s_Logger = LogManager.getLogger(DtoManager.class);
     private static DtoManager s_Instance = null;
     private static Object[] s_NoArgCtor = new Object[0];
     private final Map m_DomainClassToDtoCtor = new HashMap();
@@ -48,7 +47,7 @@ public final class DtoManager
 
     private DtoManager()
     {
-        //make it unaccessible
+        // make it unaccessible
     }
 
     public void addDtoCtor(Class domainClass, Constructor ctor)
@@ -116,7 +115,7 @@ public final class DtoManager
         try
         {
             Method mapperMethod = (Method) m_DomainClassToDomainObjectToDtoMapperMethod.get(domainObject.getClass());
-            mapperMethod.invoke(null, new Object[] { domainObject, dto});
+            mapperMethod.invoke(null, new Object[] { domainObject, dto });
         }
         catch (IllegalArgumentException e)
         {

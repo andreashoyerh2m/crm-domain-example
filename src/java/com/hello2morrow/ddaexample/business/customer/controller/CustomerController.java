@@ -24,7 +24,7 @@ public final class CustomerController implements CustomerControllerServiceIf
      * @dda-service CREATE_CUSTOMER_CMD = "Customer::CreateCustomerCmd"
      */
     public ObjectIdIf createCustomer(ContextDto contextDto, CustomerDto customerDto, AddressDto addressDto)
-                    throws BusinessException, TechnicalException
+            throws BusinessException, TechnicalException
     {
         UserController.checkPermission(contextDto, CustomerControllerServiceIf.CREATE_CUSTOMER_CMD);
         assert customerDto != null;
@@ -44,8 +44,7 @@ public final class CustomerController implements CustomerControllerServiceIf
             throw new BusinessException("address not valid");
         }
 
-        Customer[] found = Customer.findCustomerByFirstNameAndLastName(customerDto.getFirstName(),
-                        customerDto.getLastName());
+        Customer[] found = Customer.findCustomerByFirstNameAndLastName(customerDto.getFirstName(), customerDto.getLastName());
         if (found.length > 0)
         {
             for (int i = 0; i < found.length; i++)
@@ -55,8 +54,8 @@ public final class CustomerController implements CustomerControllerServiceIf
                 if (foundCustomerAddress.isSameAddress(address))
                 {
                     address.delete();
-                    throw new BusinessException("customer already exits - (firstname/lastname) = "
-                                    + customerDto.getFirstName() + " " + customerDto.getLastName());
+                    throw new BusinessException(
+                            "customer already exits - (firstname/lastname) = " + customerDto.getFirstName() + " " + customerDto.getLastName());
                 }
             }
         }
@@ -72,7 +71,7 @@ public final class CustomerController implements CustomerControllerServiceIf
      * @dda-service CREATE_VIPCUSTOMER_CMD = "Customer::CreateVipCustomerCmd"
      */
     public ObjectIdIf createVipCustomer(ContextDto contextDto, VipCustomerDto customerDto, AddressDto addressDto)
-                    throws BusinessException, TechnicalException
+            throws BusinessException, TechnicalException
     {
         UserController.checkPermission(contextDto, CustomerControllerServiceIf.CREATE_VIPCUSTOMER_CMD);
         assert customerDto != null;
@@ -92,8 +91,7 @@ public final class CustomerController implements CustomerControllerServiceIf
             throw new BusinessException("address not valid");
         }
 
-        VipCustomer[] found = VipCustomer.findVipCustomerByFirstNameAndLastName(customerDto.getFirstName(),
-                        customerDto.getLastName());
+        VipCustomer[] found = VipCustomer.findVipCustomerByFirstNameAndLastName(customerDto.getFirstName(), customerDto.getLastName());
         if (found.length > 0)
         {
             for (int i = 0; i < found.length; i++)
@@ -103,8 +101,8 @@ public final class CustomerController implements CustomerControllerServiceIf
                 if (foundCustomerAddress.isSameAddress(address))
                 {
                     address.delete();
-                    throw new BusinessException("vip customer already exits - (firstname/lastname) = "
-                                    + customerDto.getFirstName() + " " + customerDto.getLastName());
+                    throw new BusinessException(
+                            "vip customer already exits - (firstname/lastname) = " + customerDto.getFirstName() + " " + customerDto.getLastName());
                 }
             }
         }

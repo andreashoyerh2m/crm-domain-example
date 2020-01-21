@@ -6,10 +6,8 @@ package com.hello2morrow.ddaexample.business.customer.dsi;
 
 public interface CustomerDsi extends com.hello2morrow.ddaexample.business.contact.dsi.PersonDsi
 {
-	public int getAge()
-		throws com.hello2morrow.dda.foundation.common.exception.TechnicalException;
+    public int getAge() throws com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
-	public void setAge(int all)
-		throws com.hello2morrow.dda.foundation.common.exception.TechnicalException;
+    public void setAge(int all) throws com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
 }

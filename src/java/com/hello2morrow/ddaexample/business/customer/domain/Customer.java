@@ -16,7 +16,7 @@ public class Customer extends Person
     public static Customer[] findAllCustomers()
     {
         CustomerDmi dmi = (CustomerDmi) getDataManager(CustomerDsi.class);
-//        new SQLException();
+        //        new SQLException();
         return (Customer[]) getDomainObjects(dmi.findAllCustomers(), Customer.class);
     }
 
@@ -35,7 +35,7 @@ public class Customer extends Person
     }
 
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public Customer(CustomerDsi dataSupplier, DataSupplierReadMarker marker)
     {

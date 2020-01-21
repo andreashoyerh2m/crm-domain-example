@@ -9,7 +9,7 @@ import com.hello2morrow.ddaexample.business.request.dsi.StateNewDsi;
 public final class StateNew extends State
 {
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public StateNew(StateNewDsi dsi, DataSupplierReadMarker marker)
     {
@@ -17,7 +17,7 @@ public final class StateNew extends State
     }
 
     /**
-     * create a new persistent state new 
+     * create a new persistent state new
      */
     public StateNew()
     {

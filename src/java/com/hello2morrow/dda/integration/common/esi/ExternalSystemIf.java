@@ -5,5 +5,5 @@ package com.hello2morrow.dda.integration.common.esi;
  */
 public interface ExternalSystemIf
 {
-    //marker interface
+    // marker interface
 }

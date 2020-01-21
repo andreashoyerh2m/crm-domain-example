@@ -18,7 +18,7 @@ public final class LoginDtoVal extends DtoValidator
         {
             addError("Name des Benutzers ungültig - mindestens 3 Zeichen sind notwendig");
         }
-        if (encryptedPwd == null) //business tier
+        if (encryptedPwd == null) // business tier
         {
             addError("Verschlüsseltes Passwort ungültig");
         }

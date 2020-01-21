@@ -9,9 +9,10 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.foundation.common.exception.DtoValidationException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 class DtoValidatorKey
 {
@@ -41,8 +42,7 @@ class DtoValidatorKey
         }
         else if (obj instanceof DtoValidatorKey)
         {
-            if (m_DtoClass == ((DtoValidatorKey) obj).m_DtoClass
-                            && m_BusinessComponentClass == ((DtoValidatorKey) obj).m_BusinessComponentClass)
+            if (m_DtoClass == ((DtoValidatorKey) obj).m_DtoClass && m_BusinessComponentClass == ((DtoValidatorKey) obj).m_BusinessComponentClass)
             {
                 return true;
             }
@@ -67,7 +67,7 @@ public abstract class Dto implements Serializable, DtoIf
 {
     protected final static String LINE_SEPARATOR = System.getProperty("line.separator");
     private static boolean s_PropertiesLoaded;
-    private static Logger s_Logger = Logger.getLogger(Dto.class);
+    private static Logger s_Logger = LogManager.getLogger(Dto.class);
     private static Map s_DtoClassToDtoValidator = new HashMap();
 
     public static synchronized void initialize(Properties properties)
@@ -82,8 +82,7 @@ public abstract class Dto implements Serializable, DtoIf
         InputStream in = Dto.class.getResourceAsStream(properties);
         if (in == null)
         {
-            throw new MissingResourceException("properties file not found = " + properties, Dto.class.getName(),
-                            properties);
+            throw new MissingResourceException("properties file not found = " + properties, Dto.class.getName(), properties);
         }
         Properties loadedProperties = new Properties();
         loadedProperties.load(in);

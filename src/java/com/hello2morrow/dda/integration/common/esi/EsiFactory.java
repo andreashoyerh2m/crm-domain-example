@@ -8,13 +8,14 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.foundation.common.exception.ExceptionUtility;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class EsiFactory
 {
-    private static Logger s_Logger = Logger.getLogger(EsiFactory.class);
+    private static Logger s_Logger = LogManager.getLogger(EsiFactory.class);
     private static EsiFactory s_Instance = null;
     private final Map m_EsiToEsiImplementation = new HashMap();
 
@@ -25,8 +26,7 @@ public final class EsiFactory
         InputStream in = EsiFactory.class.getResourceAsStream(properties);
         if (in == null)
         {
-            throw new MissingResourceException("properties file not found = " + properties, EsiFactory.class.getName(),
-                            properties);
+            throw new MissingResourceException("properties file not found = " + properties, EsiFactory.class.getName(), properties);
         }
         Properties loadedProperties = new Properties();
         loadedProperties.load(in);

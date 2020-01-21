@@ -10,7 +10,7 @@ import com.hello2morrow.ddaexample.business.request.domain.Request;
 public final class RequestForOffer extends Request
 {
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public RequestForOffer(RequestForOfferDsi dsi, DataSupplierReadMarker marker)
     {
@@ -22,7 +22,6 @@ public final class RequestForOffer extends Request
      */
     public RequestForOffer()
     {
-        super((RequestForOfferDsi) getDataManager(RequestForOfferDsi.class).createDataSupplier(
-                        RequestForOfferDsi.class, true));
+        super((RequestForOfferDsi) getDataManager(RequestForOfferDsi.class).createDataSupplier(RequestForOfferDsi.class, true));
     }
 }

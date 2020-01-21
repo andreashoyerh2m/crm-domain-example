@@ -4,10 +4,13 @@ public class F4
 {
     F5 z;
 
-    F5 getZ() { return z; }
+    F5 getZ()
+    {
+        return z;
+    }
 }
 
 class F4a
 {
-    
+
 }

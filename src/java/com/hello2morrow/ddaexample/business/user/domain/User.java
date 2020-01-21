@@ -1,7 +1,5 @@
 package com.hello2morrow.ddaexample.business.user.domain;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.business.common.dsi.DataSupplierReadMarker;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectWithDataSupplier;
 import com.hello2morrow.dda.foundation.common.exception.AssertionUtility;
@@ -10,12 +8,15 @@ import com.hello2morrow.ddaexample.business.user.dsi.RoleDsi;
 import com.hello2morrow.ddaexample.business.user.dsi.UserDmi;
 import com.hello2morrow.ddaexample.business.user.dsi.UserDsi;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @dda-generate-cmp
  */
 public class User extends DomainObjectWithDataSupplier
 {
-    private static Logger s_Logger = Logger.getLogger(User.class);
+    private static Logger s_Logger = LogManager.getLogger(User.class);
 
     /**
      * @dda-dmi-find
@@ -40,7 +41,7 @@ public class User extends DomainObjectWithDataSupplier
     }
 
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public User(UserDsi dsi, DataSupplierReadMarker marker)
     {
@@ -48,7 +49,7 @@ public class User extends DomainObjectWithDataSupplier
     }
 
     /**
-     * creates a persistent user 
+     * creates a persistent user
      */
     public User()
     {
@@ -56,7 +57,7 @@ public class User extends DomainObjectWithDataSupplier
     }
 
     /**
-     * creates a persistent user 
+     * creates a persistent user
      */
     public User(String name, String password)
     {

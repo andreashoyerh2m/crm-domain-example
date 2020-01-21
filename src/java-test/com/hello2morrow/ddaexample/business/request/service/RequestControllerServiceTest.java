@@ -13,7 +13,7 @@ import com.hello2morrow.ddaexample.business.user.service.UserControllerServiceIf
 
 public class RequestControllerServiceTest extends TestCase
 {
-    private static Logger s_Logger = Logger.getLogger(RequestControllerServiceTest.class);
+    private static Logger s_Logger = LogManager.getLogger(RequestControllerServiceTest.class);
 
     private UserControllerServiceIf m_UserService;
     private RequestControllerServiceIf m_RequestService;

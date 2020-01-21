@@ -2,13 +2,14 @@ package com.hello2morrow.dda.business.common.dsi;
 
 import java.lang.reflect.Array;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.foundation.common.DateUtil;
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 import com.hello2morrow.dda.foundation.common.exception.AssertionUtility;
 import com.hello2morrow.dda.foundation.common.exception.BusinessException;
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * transient or persistent domain object base class
@@ -17,7 +18,7 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
 {
     public static final int TRANSIENT = 0;
     public static final int PERSISTENT = 1;
-    private static Logger s_Logger = Logger.getLogger(DomainObjectWithDataSupplier.class);
+    private static Logger s_Logger = LogManager.getLogger(DomainObjectWithDataSupplier.class);
     private boolean m_IsPersistent;
     private DataSupplierReadMarker m_ReadMarker;
 
@@ -44,8 +45,7 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
     }
 
     /**
-     * Returns the registered persistence manager for the given data supplier
-     * interface.
+     * Returns the registered persistence manager for the given data supplier interface.
      * 
      * @param dataSupplierInterface
      * @return
@@ -56,8 +56,7 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
     }
 
     /**
-     * Creates an array of domain objects for the given persistence suppliers.
-     * The domain objects that can not be found in the cache are created.
+     * Creates an array of domain objects for the given persistence suppliers. The domain objects that can not be found in the cache are created.
      * 
      * @param persistenceSupplier
      * @param domainClass runtime type of the returned array
@@ -69,8 +68,7 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
         assert AssertionUtility.checkUniqueElementsArray(dataSuppliers);
         assert domainClass != null;
 
-        DomainObjectWithDataSupplier[] domainObjects = (DomainObjectWithDataSupplier[]) Array.newInstance(domainClass,
-                        dataSuppliers.length);
+        DomainObjectWithDataSupplier[] domainObjects = (DomainObjectWithDataSupplier[]) Array.newInstance(domainClass, dataSuppliers.length);
         for (int i = 0; i < domainObjects.length; ++i)
         {
             domainObjects[i] = (DomainObjectWithDataSupplier) DomainObjectFactory.getInstance().get(dataSuppliers[i]);
@@ -80,8 +78,7 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
     }
 
     /**
-     * Creates a domain object (if not already in the cache) for the given
-     * persistence data supplier
+     * Creates a domain object (if not already in the cache) for the given persistence data supplier
      * 
      * @param persistenceSupplier
      * @return the domain object
@@ -103,8 +100,7 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
         assert AssertionUtility.checkUniqueElementsArray(domainObjects);
         assert dataSupplierInterfaceClass != null;
 
-        DataSupplierIf[] suppliers = (DataSupplierIf[]) Array.newInstance(dataSupplierInterfaceClass,
-                        domainObjects.length);
+        DataSupplierIf[] suppliers = (DataSupplierIf[]) Array.newInstance(dataSupplierInterfaceClass, domainObjects.length);
 
         for (int i = 0; i < domainObjects.length; ++i)
         {
@@ -116,7 +112,8 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
     }
 
     /**
-     * Used for creation from data supplier layer via the DomainObjectFactory  
+     * Used for creation from data supplier layer via the DomainObjectFactory
+     * 
      * @param dataSupplier
      * @param marker
      */
@@ -125,8 +122,8 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
         super(dataSupplier);
         assert dataSupplier != null;
         assert marker != null;
-        assert DataManagerFactory.getInstance().hasDataManagerImplementation(
-                        ((DomainObjectId) dataSupplier.getObjectId()).getDataSupplierInterfaceClass());
+        assert DataManagerFactory.getInstance()
+                .hasDataManagerImplementation(((DomainObjectId) dataSupplier.getObjectId()).getDataSupplierInterfaceClass());
         assert dataSupplier.supportsPersistentData();
         m_ReadMarker = marker;
         m_IsPersistent = true;
@@ -134,14 +131,15 @@ public abstract class DomainObjectWithDataSupplier extends DomainObject
 
     /**
      * Used for creation from subclasses
+     * 
      * @param dataSupplier
      */
     public DomainObjectWithDataSupplier(DataSupplierIf dataSupplier)
     {
         super(dataSupplier);
         assert dataSupplier != null;
-        assert DataManagerFactory.getInstance().hasDataManagerImplementation(
-                        ((DomainObjectId) dataSupplier.getObjectId()).getDataSupplierInterfaceClass());
+        assert DataManagerFactory.getInstance()
+                .hasDataManagerImplementation(((DomainObjectId) dataSupplier.getObjectId()).getDataSupplierInterfaceClass());
         if (dataSupplier.supportsPersistentData())
         {
             m_IsPersistent = true;

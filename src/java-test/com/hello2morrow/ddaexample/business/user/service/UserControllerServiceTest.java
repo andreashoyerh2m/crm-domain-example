@@ -11,7 +11,7 @@ import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
 public class UserControllerServiceTest extends TestCase
 {
-    private static Logger s_Logger = Logger.getLogger(UserControllerServiceTest.class);
+    private static Logger s_Logger = LogManager.getLogger(UserControllerServiceTest.class);
     private UserControllerServiceIf m_UserService;
 
     protected void setUp() throws Exception

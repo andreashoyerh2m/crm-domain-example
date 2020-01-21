@@ -1,7 +1,5 @@
 package com.hello2morrow.dda.foundation.common.exception;
 
-
-
 public final class DtoValidationException extends BusinessException
 {
     private final static String LINE_SEPARATOR = System.getProperty("line.separator");

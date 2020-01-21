@@ -8,7 +8,7 @@ public final class ExceptionUtility
 
     private ExceptionUtility()
     {
-        //Just to make it unaccessible
+        // Just to make it unaccessible
     }
 
     public static String collectAll(Throwable exc)

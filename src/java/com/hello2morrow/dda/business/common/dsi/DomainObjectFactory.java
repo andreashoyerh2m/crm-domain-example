@@ -10,9 +10,10 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.foundation.common.exception.ExceptionUtility;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 final class Cache
 {
@@ -20,7 +21,7 @@ final class Cache
 
     Cache()
     {
-        //Just to make the ctor package-scope
+        // Just to make the ctor package-scope
     }
 
     DomainObjectIf[] getDomainObjects()
@@ -69,7 +70,7 @@ final class ThreadLocalCache extends ThreadLocal
 
 public final class DomainObjectFactory
 {
-    private static Logger s_Logger = Logger.getLogger(DomainObjectFactory.class);
+    private static Logger s_Logger = LogManager.getLogger(DomainObjectFactory.class);
     private static DomainObjectFactory s_Instance = null;
     private static final Object[] s_CtorArgs = new Object[2];
     private final Map m_DataSupplierInterfaceClassToCtor = new HashMap();
@@ -82,8 +83,7 @@ public final class DomainObjectFactory
         InputStream in = DomainObjectFactory.class.getResourceAsStream(properties);
         if (in == null)
         {
-            throw new MissingResourceException("properties file not found = " + properties,
-                            DomainObjectFactory.class.getName(), properties);
+            throw new MissingResourceException("properties file not found = " + properties, DomainObjectFactory.class.getName(), properties);
         }
         Properties loadedProperties = new Properties();
         loadedProperties.load(in);
@@ -134,8 +134,8 @@ public final class DomainObjectFactory
         assert dataSupplierInterfaceName != null;
         assert dataSupplierInterfaceName.length() > 0;
 
-        s_Logger.debug("trying to register ctor (domain object class name = data supplier interface class name) = "
-                        + domainObjectClassName + " = " + dataSupplierInterfaceName);
+        s_Logger.debug("trying to register ctor (domain object class name = data supplier interface class name) = " + domainObjectClassName + " = "
+                + dataSupplierInterfaceName);
 
         Class dataSupplierInterfaceClass = getDataSupplierInterfaceClass(dataSupplierInterfaceName);
         Class domainObjectClass = getDomainObjectClass(domainObjectClassName);
@@ -155,10 +155,8 @@ public final class DomainObjectFactory
         }
         catch (NoSuchMethodException e)
         {
-            s_Logger.error("constructor for class " + domainObjectClassName + " could not be found - "
-                            + ExceptionUtility.collectAll(e));
-            assert false : "constructor undefined: " + domainObjectClassName + "(" + dataSupplierInterfaceName + ")"
-                            + ExceptionUtility.collectAll(e);
+            s_Logger.error("constructor for class " + domainObjectClassName + " could not be found - " + ExceptionUtility.collectAll(e));
+            assert false : "constructor undefined: " + domainObjectClassName + "(" + dataSupplierInterfaceName + ")" + ExceptionUtility.collectAll(e);
             return;
         }
 
@@ -166,10 +164,10 @@ public final class DomainObjectFactory
 
         if (previous != null)
         {
-            s_Logger.error("duplicate data supplier interface key " + dataSupplierInterfaceName
-                            + " found for domain object class " + domainObjectClassName);
-            assert false : "duplicate data supplier interface key " + dataSupplierInterfaceName
-                            + " found for domain object class " + domainObjectClassName;
+            s_Logger.error(
+                    "duplicate data supplier interface key " + dataSupplierInterfaceName + " found for domain object class " + domainObjectClassName);
+            assert false : "duplicate data supplier interface key " + dataSupplierInterfaceName + " found for domain object class "
+                    + domainObjectClassName;
         }
 
         s_Logger.debug("constructor loaded");
@@ -186,8 +184,7 @@ public final class DomainObjectFactory
         }
         catch (ClassNotFoundException e)
         {
-            s_Logger.error("domain class " + domainObjectClassName + " could not be found - "
-                            + ExceptionUtility.collectAll(e));
+            s_Logger.error("domain class " + domainObjectClassName + " could not be found - " + ExceptionUtility.collectAll(e));
             assert false : "domain class " + domainObjectClassName + " could not be found";
             return null;
         }
@@ -204,8 +201,7 @@ public final class DomainObjectFactory
         }
         catch (ClassNotFoundException e)
         {
-            s_Logger.error("data supplier interface " + dataSupplierInterfaceName + " could not be found - "
-                            + ExceptionUtility.collectAll(e));
+            s_Logger.error("data supplier interface " + dataSupplierInterfaceName + " could not be found - " + ExceptionUtility.collectAll(e));
             assert false : "data supplier interface " + dataSupplierInterfaceName + " could not be found";
             return null;
         }
@@ -245,14 +241,12 @@ public final class DomainObjectFactory
         {
             Class dataSupplierInterface = objectId.getDataSupplierInterfaceClass();
 
-            s_Logger.debug("trying to create a domain object using data supplier interface '"
-                            + dataSupplierInterface.getName() + "' instance of '" + dataSupplier.getClass().getName()
-                            + "'");
+            s_Logger.debug("trying to create a domain object using data supplier interface '" + dataSupplierInterface.getName() + "' instance of '"
+                    + dataSupplier.getClass().getName() + "'");
             Constructor ctor = (Constructor) m_DataSupplierInterfaceClassToCtor.get(dataSupplierInterface);
             if (ctor == null)
             {
-                s_Logger.error("no ctor registered for data supplier interface '" + dataSupplierInterface.getName()
-                                + "'");
+                s_Logger.error("no ctor registered for data supplier interface '" + dataSupplierInterface.getName() + "'");
                 assert false : "no ctor registered for data supplier interface " + dataSupplierInterface.getName();
             }
 

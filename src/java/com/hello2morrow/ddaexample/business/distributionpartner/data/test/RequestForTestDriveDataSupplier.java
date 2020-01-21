@@ -4,32 +4,32 @@
 
 package com.hello2morrow.ddaexample.business.distributionpartner.data.test;
 
-import com.hello2morrow.ddaexample.business.distributionpartner.dsi.RequestForTestDriveDsi;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectId;
+import com.hello2morrow.ddaexample.business.distributionpartner.dsi.RequestForTestDriveDsi;
 
 public class RequestForTestDriveDataSupplier extends com.hello2morrow.ddaexample.business.request.data.test.RequestDataSupplier
-	implements RequestForTestDriveDsi
+        implements RequestForTestDriveDsi
 {
-	protected RequestForTestDriveDataSupplier(DomainObjectId id)
-	{
-		super(id);
-	}
+    protected RequestForTestDriveDataSupplier(DomainObjectId id)
+    {
+        super(id);
+    }
 
-	public RequestForTestDriveDataSupplier()
-	{
-		super(new DomainObjectId(RequestForTestDriveDsi.class));
-	}
+    public RequestForTestDriveDataSupplier()
+    {
+        super(new DomainObjectId(RequestForTestDriveDsi.class));
+    }
 
-	private java.util.Date m_TargetDate = null; 
+    private java.util.Date m_TargetDate = null;
 
-	public java.util.Date getTargetDate()
-	{
-		return m_TargetDate;
-	}
+    public java.util.Date getTargetDate()
+    {
+        return m_TargetDate;
+    }
 
-	public void setTargetDate(java.util.Date set)
-	{
-		m_TargetDate = set;
-	}
+    public void setTargetDate(java.util.Date set)
+    {
+        m_TargetDate = set;
+    }
 
 }

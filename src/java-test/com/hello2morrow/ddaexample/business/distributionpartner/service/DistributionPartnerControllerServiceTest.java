@@ -22,7 +22,7 @@ import com.hello2morrow.ddaexample.business.user.service.UserControllerServiceIf
 
 public class DistributionPartnerControllerServiceTest extends TestCase
 {
-    private static Logger s_Logger = Logger.getLogger(DistributionPartnerControllerServiceTest.class);
+    private static Logger s_Logger = LogManager.getLogger(DistributionPartnerControllerServiceTest.class);
 
     private UserControllerServiceIf m_UserService;
     private DistributionPartnerControllerServiceIf m_DistributionPartnerService;

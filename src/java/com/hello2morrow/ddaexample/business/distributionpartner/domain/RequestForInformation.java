@@ -10,7 +10,7 @@ import com.hello2morrow.ddaexample.business.request.domain.Request;
 public class RequestForInformation extends Request
 {
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public RequestForInformation(RequestForInformationDsi dsi, DataSupplierReadMarker marker)
     {
@@ -22,7 +22,6 @@ public class RequestForInformation extends Request
      */
     public RequestForInformation()
     {
-        super((RequestForInformationDsi) getDataManager(RequestForInformationDsi.class).createDataSupplier(
-                        RequestForInformationDsi.class, true));
+        super((RequestForInformationDsi) getDataManager(RequestForInformationDsi.class).createDataSupplier(RequestForInformationDsi.class, true));
     }
 }

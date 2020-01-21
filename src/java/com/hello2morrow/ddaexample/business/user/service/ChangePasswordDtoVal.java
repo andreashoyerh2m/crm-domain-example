@@ -80,11 +80,11 @@ public final class ChangePasswordDtoVal extends DtoValidator
         assert pwdType != null;
         assert pwdType.length() > 0;
 
-        if (pwd != null && pwd.length() < 3) //presentation tier
+        if (pwd != null && pwd.length() < 3) // presentation tier
         {
             addError(pwdType + " Passwort ungültig - mindestens 3 Zeichen sind notwendig");
         }
-        if (pwd == null && encryptedPwd == null) //business tier
+        if (pwd == null && encryptedPwd == null) // business tier
         {
             addError(pwdType + " Verschlüsseltes Passwort ungültig");
         }

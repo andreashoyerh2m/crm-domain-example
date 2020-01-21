@@ -33,7 +33,7 @@ public final class ServerCommand extends DomainObjectWithDataSupplier
     }
 
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public ServerCommand(ServerCommandDsi dsi, DataSupplierReadMarker marker)
     {

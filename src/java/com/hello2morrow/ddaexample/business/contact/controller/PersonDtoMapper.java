@@ -4,31 +4,29 @@
 
 package com.hello2morrow.ddaexample.business.contact.controller;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.business.common.controller.DtoManager;
 import com.hello2morrow.dda.foundation.common.exception.AssertionUtility;
 import com.hello2morrow.dda.foundation.common.exception.ExceptionUtility;
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
- 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class PersonDtoMapper
 {
-    private static Logger s_Logger = Logger.getLogger(PersonDtoMapper.class);
+    private static Logger s_Logger = LogManager.getLogger(PersonDtoMapper.class);
 
     static
     {
         try
         {
             DtoManager dtoManager = DtoManager.getInstance();
-            dtoManager.addDtoCtor
-            (
-            	com.hello2morrow.ddaexample.business.contact.domain.Person.class, com.hello2morrow.ddaexample.business.contact.service.PersonDto.class.getConstructor(new Class[0])
-            );
-            dtoManager.addDomainObjectToDtoMapper
-            (
-            	com.hello2morrow.ddaexample.business.contact.domain.Person.class,
-            	PersonDtoMapper.class.getDeclaredMethod("mapDomainObjectToDto", new Class[]{com.hello2morrow.ddaexample.business.contact.domain.Person.class, com.hello2morrow.ddaexample.business.contact.service.PersonDto.class})
-            );
+            dtoManager.addDtoCtor(com.hello2morrow.ddaexample.business.contact.domain.Person.class,
+                    com.hello2morrow.ddaexample.business.contact.service.PersonDto.class.getConstructor(new Class[0]));
+            dtoManager.addDomainObjectToDtoMapper(com.hello2morrow.ddaexample.business.contact.domain.Person.class,
+                    PersonDtoMapper.class.getDeclaredMethod("mapDomainObjectToDto",
+                            new Class[] { com.hello2morrow.ddaexample.business.contact.domain.Person.class,
+                                    com.hello2morrow.ddaexample.business.contact.service.PersonDto.class }));
         }
         catch (SecurityException e)
         {
@@ -41,78 +39,78 @@ public final class PersonDtoMapper
             assert false : ExceptionUtility.collectAll(e);
         }
     }
-	
-	private PersonDtoMapper()
-	{
-		//make it unaccessible
-	}
 
-	public static com.hello2morrow.ddaexample.business.contact.service.PersonDto[] createDtosFromDomainObjects(com.hello2morrow.ddaexample.business.contact.domain.Person[] domainObjects) throws TechnicalException
-	{
-		assert AssertionUtility.checkArray(domainObjects);
-		com.hello2morrow.ddaexample.business.contact.service.PersonDto[] createdDtos = new com.hello2morrow.ddaexample.business.contact.service.PersonDto[domainObjects.length];
-		 
+    private PersonDtoMapper()
+    {
+        // make it unaccessible
+    }
+
+    public static com.hello2morrow.ddaexample.business.contact.service.PersonDto[] createDtosFromDomainObjects(
+            com.hello2morrow.ddaexample.business.contact.domain.Person[] domainObjects) throws TechnicalException
+    {
+        assert AssertionUtility.checkArray(domainObjects);
+        com.hello2morrow.ddaexample.business.contact.service.PersonDto[] createdDtos = new com.hello2morrow.ddaexample.business.contact.service.PersonDto[domainObjects.length];
+
         for (int i = 0; i < domainObjects.length; i++)
         {
-        	createdDtos[i] = createDtoFromDomainObject(domainObjects[i]);
+            createdDtos[i] = createDtoFromDomainObject(domainObjects[i]);
         }
-        
-        return createdDtos;
-	}
 
-	public static com.hello2morrow.ddaexample.business.contact.service.PersonDto createDtoFromDomainObject(com.hello2morrow.ddaexample.business.contact.domain.Person domainObject) throws TechnicalException
-	{
-		assert domainObject != null;
+        return createdDtos;
+    }
+
+    public static com.hello2morrow.ddaexample.business.contact.service.PersonDto createDtoFromDomainObject(
+            com.hello2morrow.ddaexample.business.contact.domain.Person domainObject) throws TechnicalException
+    {
+        assert domainObject != null;
 
         DtoManager dtoManager = DtoManager.getInstance();
-		Class domainObjectClass = domainObject.getClass();
-		
-        com.hello2morrow.ddaexample.business.contact.service.PersonDto dto =
-        	(com.hello2morrow.ddaexample.business.contact.service.PersonDto) dtoManager.createDto(domainObjectClass);
-        
+        Class domainObjectClass = domainObject.getClass();
+
+        com.hello2morrow.ddaexample.business.contact.service.PersonDto dto = (com.hello2morrow.ddaexample.business.contact.service.PersonDto) dtoManager
+                .createDto(domainObjectClass);
+
         dtoManager.mapDomainObjectToDto(domainObject, dto);
 
-		return dto;
-	}
+        return dto;
+    }
 
-	public static void mapDomainObjectToDto(com.hello2morrow.ddaexample.business.contact.domain.Person domainObject, com.hello2morrow.ddaexample.business.contact.service.PersonDto dto)
-		throws TechnicalException
-	{
-		assert dto != null;
-		assert domainObject != null;
+    public static void mapDomainObjectToDto(com.hello2morrow.ddaexample.business.contact.domain.Person domainObject,
+            com.hello2morrow.ddaexample.business.contact.service.PersonDto dto) throws TechnicalException
+    {
+        assert dto != null;
+        assert domainObject != null;
 
-		dto.setFirstName(domainObject.getFirstName());
-		dto.setLastName(domainObject.getLastName());
+        dto.setFirstName(domainObject.getFirstName());
+        dto.setLastName(domainObject.getLastName());
 
-		com.hello2morrow.dda.business.common.dsi.DomainObject object = domainObject.getAddress();
-		dto.setAddressReference(object.getObjectId());
+        com.hello2morrow.dda.business.common.dsi.DomainObject object = domainObject.getAddress();
+        dto.setAddressReference(object.getObjectId());
 
-		dto.setObjectId(domainObject.getObjectId());
-	}
+        dto.setObjectId(domainObject.getObjectId());
+    }
 
-	public static void mapDtoToDomainObject(com.hello2morrow.ddaexample.business.contact.service.PersonDto dto, com.hello2morrow.ddaexample.business.contact.domain.Person domainObject, boolean resolveReferences)
-		throws TechnicalException
-	{
-		assert dto != null;
-		assert domainObject != null;
-		
-		domainObject.setFirstName(dto.getFirstName());
+    public static void mapDtoToDomainObject(com.hello2morrow.ddaexample.business.contact.service.PersonDto dto,
+            com.hello2morrow.ddaexample.business.contact.domain.Person domainObject, boolean resolveReferences) throws TechnicalException
+    {
+        assert dto != null;
+        assert domainObject != null;
 
-		domainObject.setLastName(dto.getLastName());
+        domainObject.setFirstName(dto.getFirstName());
 
-		if(resolveReferences)
-		{
-			com.hello2morrow.dda.foundation.common.ObjectIdIf objectId = dto.getAddressReference();
-			com.hello2morrow.ddaexample.business.contact.domain.Address resolved = (com.hello2morrow.ddaexample.business.contact.domain.Address)com.hello2morrow.dda.business.common.dsi.DomainObjectWithDataSupplier.findByObjectId(objectId);
-			domainObject.setAddress(resolved);
-		}
+        domainObject.setLastName(dto.getLastName());
 
-		if(dto.hasObjectId())
-		{
-			domainObject.updateObjectId(dto.getObjectId());
-		}
-	}
+        if (resolveReferences)
+        {
+            com.hello2morrow.dda.foundation.common.ObjectIdIf objectId = dto.getAddressReference();
+            com.hello2morrow.ddaexample.business.contact.domain.Address resolved = (com.hello2morrow.ddaexample.business.contact.domain.Address) com.hello2morrow.dda.business.common.dsi.DomainObjectWithDataSupplier
+                    .findByObjectId(objectId);
+            domainObject.setAddress(resolved);
+        }
+
+        if (dto.hasObjectId())
+        {
+            domainObject.updateObjectId(dto.getObjectId());
+        }
+    }
 }
-
-
-

@@ -3,16 +3,16 @@ package com.hello2morrow.dda.foundation.common;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.apache.log4j.Logger;
-
 import java.util.Base64;
 
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class EncryptUtil
 {
-    private static Logger s_Logger = Logger.getLogger(EncryptUtil.class);
+    private static Logger s_Logger = LogManager.getLogger(EncryptUtil.class);
 
     public static void main(String[] args)
     {
@@ -36,7 +36,7 @@ public final class EncryptUtil
 
     private EncryptUtil()
     {
-        //Just to make the ctor unaccessible
+        // Just to make the ctor unaccessible
     }
 
     public static String encrypt(String plaintext) throws TechnicalException

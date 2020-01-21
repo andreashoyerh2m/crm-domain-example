@@ -4,20 +4,20 @@
 
 package com.hello2morrow.ddaexample.business.distributionpartner.data.test;
 
-import com.hello2morrow.ddaexample.business.distributionpartner.dsi.RequestForInformationDsi;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectId;
+import com.hello2morrow.ddaexample.business.distributionpartner.dsi.RequestForInformationDsi;
 
 public class RequestForInformationDataSupplier extends com.hello2morrow.ddaexample.business.request.data.test.RequestDataSupplier
-	implements RequestForInformationDsi
+        implements RequestForInformationDsi
 {
-	protected RequestForInformationDataSupplier(DomainObjectId id)
-	{
-		super(id);
-	}
+    protected RequestForInformationDataSupplier(DomainObjectId id)
+    {
+        super(id);
+    }
 
-	public RequestForInformationDataSupplier()
-	{
-		super(new DomainObjectId(RequestForInformationDsi.class));
-	}
+    public RequestForInformationDataSupplier()
+    {
+        super(new DomainObjectId(RequestForInformationDsi.class));
+    }
 
 }

@@ -4,25 +4,24 @@
 
 package com.hello2morrow.ddaexample.business.contact.data.test;
 
-import com.hello2morrow.ddaexample.business.contact.dsi.PersonDsi;
+import com.hello2morrow.dda.business.common.dsi.DataSupplierIf;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectId;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectIf;
-import com.hello2morrow.dda.business.common.dsi.DataSupplierIf;
 import com.hello2morrow.dda.business.common.dsi.TestDataSupplierInheritanceCache;
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
+import com.hello2morrow.ddaexample.business.contact.dsi.PersonDsi;
 
-public class PersonDataManager 
-	implements com.hello2morrow.ddaexample.business.contact.dsi.PersonDmi
+public class PersonDataManager implements com.hello2morrow.ddaexample.business.contact.dsi.PersonDmi
 {
-	protected final void persistentDataSupplierCreated(DataSupplierIf created)
-	{
-		assert created != null;
-		assert created instanceof PersonDataSupplier;
-		assert created.supportsPersistentData();
-		TestDataSupplierInheritanceCache.getInstance().add(created, PersonDataManager.class);
-	}
-	
+    protected final void persistentDataSupplierCreated(DataSupplierIf created)
+    {
+        assert created != null;
+        assert created instanceof PersonDataSupplier;
+        assert created.supportsPersistentData();
+        TestDataSupplierInheritanceCache.getInstance().add(created, PersonDataManager.class);
+    }
+
     protected final PersonDataSupplier[] getAll()
     {
         return (PersonDataSupplier[]) TestDataSupplierInheritanceCache.getInstance().getAll(PersonDataManager.class, new PersonDataSupplier[0]);
@@ -30,16 +29,15 @@ public class PersonDataManager
 
     public final boolean supportsPersistentData()
     {
-    	return true;
+        return true;
     }
 
     public DataSupplierIf createDataSupplier(Class dataSupplierInterfaceClass, boolean isPersistent)
     {
         assert dataSupplierInterfaceClass != null;
-        assert PersonDsi.class.equals(dataSupplierInterfaceClass) 
-        	: "wrong class = " + dataSupplierInterfaceClass.getName();
-		assert false : "com.hello2morrow.ddaexample.business.contact.domain.Person is abstract" ;
-		return null;
+        assert PersonDsi.class.equals(dataSupplierInterfaceClass) : "wrong class = " + dataSupplierInterfaceClass.getName();
+        assert false : "com.hello2morrow.ddaexample.business.contact.domain.Person is abstract";
+        return null;
     }
 
     public final void deleteDataSupplier(DataSupplierIf dataSupplier) throws TechnicalException
@@ -54,13 +52,10 @@ public class PersonDataManager
 
     public final DataSupplierIf findByObjectId(ObjectIdIf id) throws TechnicalException
     {
-    	assert id != null;
-    	assert id instanceof DomainObjectId;
+        assert id != null;
+        assert id instanceof DomainObjectId;
         assert TestDataSupplierInheritanceCache.getInstance().contains(id);
-    	return TestDataSupplierInheritanceCache.getInstance().findByObjectId(id);
+        return TestDataSupplierInheritanceCache.getInstance().findByObjectId(id);
     }
 
 }
-
-
-

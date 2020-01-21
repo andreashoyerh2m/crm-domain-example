@@ -15,7 +15,7 @@ public final class TestDataSupplierInheritanceCache
 
     private TestDataSupplierInheritanceCache()
     {
-        //make it unaccessible
+        // make it unaccessible
     }
 
     public static TestDataSupplierInheritanceCache getInstance()

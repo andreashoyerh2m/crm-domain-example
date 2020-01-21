@@ -1,7 +1,5 @@
 package com.hello2morrow.ddaexample.business.user.controller;
 
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.business.common.dsi.DomainObjectWithDataSupplier;
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 import com.hello2morrow.dda.foundation.common.exception.BusinessException;
@@ -16,13 +14,15 @@ import com.hello2morrow.ddaexample.business.user.service.RoleDto;
 import com.hello2morrow.ddaexample.business.user.service.UserControllerServiceIf;
 import com.hello2morrow.ddaexample.business.user.service.UserDto;
 import com.hello2morrow.ddaexample.business.user.service.UserListDto;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-/** 
+/**
  * @dda-generate-service
  */
 public final class UserController implements UserControllerServiceIf
 {
-    private static Logger s_Logger = Logger.getLogger(UserController.class);
+    private static Logger s_Logger = LogManager.getLogger(UserController.class);
 
     /**
      * @dda-service LOGIN_CMD = "User::LoginCmd"
@@ -78,8 +78,7 @@ public final class UserController implements UserControllerServiceIf
     /**
      * @dda-service ADD_ROLE_TO_USER_CMD = "User::AddRoleToUserCmd"
      */
-    public void addRoleToUser(ContextDto contextDto, ObjectIdIf userId, ObjectIdIf roleId) throws BusinessException,
-                    TechnicalException
+    public void addRoleToUser(ContextDto contextDto, ObjectIdIf userId, ObjectIdIf roleId) throws BusinessException, TechnicalException
     {
         assert userId != null;
         assert roleId != null;
@@ -111,8 +110,7 @@ public final class UserController implements UserControllerServiceIf
         }
     }
 
-    public static void checkPermission(ContextDto contextDto, String serverCommandId) throws TechnicalException,
-                    BusinessException
+    public static void checkPermission(ContextDto contextDto, String serverCommandId) throws TechnicalException, BusinessException
     {
         assert contextDto != null;
         ObjectIdIf executingUserId = contextDto.getUserReference();
@@ -124,8 +122,7 @@ public final class UserController implements UserControllerServiceIf
         }
         if (!executingUser.hasPermissionToExecute(serverCommand))
         {
-            throw new BusinessException("user '" + executingUser.getName() + "' has no permission '" + serverCommandId
-                            + "' to execute");
+            throw new BusinessException("user '" + executingUser.getName() + "' has no permission '" + serverCommandId + "' to execute");
         }
     }
 
@@ -186,8 +183,7 @@ public final class UserController implements UserControllerServiceIf
     /**
      * @dda-service CHANGE_USER_PASSWORD_CMD = "User::ChangeUserPasswordCmd"
      */
-    public void changeUserPwd(ContextDto contextDto, ChangePasswordDto changePasswordDto) throws BusinessException,
-                    TechnicalException
+    public void changeUserPwd(ContextDto contextDto, ChangePasswordDto changePasswordDto) throws BusinessException, TechnicalException
     {
         checkPermission(contextDto, UserControllerServiceIf.CHANGE_USER_PASSWORD_CMD);
         assert changePasswordDto != null;

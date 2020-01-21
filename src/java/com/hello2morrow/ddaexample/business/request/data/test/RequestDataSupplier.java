@@ -4,51 +4,50 @@
 
 package com.hello2morrow.ddaexample.business.request.data.test;
 
-import com.hello2morrow.ddaexample.business.request.dsi.RequestDsi;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectId;
+import com.hello2morrow.ddaexample.business.request.dsi.RequestDsi;
 
-public class RequestDataSupplier extends com.hello2morrow.dda.business.common.dsi.TestDataSupplier
-	implements RequestDsi
+public class RequestDataSupplier extends com.hello2morrow.dda.business.common.dsi.TestDataSupplier implements RequestDsi
 {
-	protected RequestDataSupplier(DomainObjectId id)
-	{
-		super(id);
-	}
+    protected RequestDataSupplier(DomainObjectId id)
+    {
+        super(id);
+    }
 
-	private java.lang.String m_Subject = null; 
+    private java.lang.String m_Subject = null;
 
-	public java.lang.String getSubject()
-	{
-		return m_Subject;
-	}
+    public java.lang.String getSubject()
+    {
+        return m_Subject;
+    }
 
-	public void setSubject(java.lang.String set)
-	{
-		m_Subject = set;
-	}
+    public void setSubject(java.lang.String set)
+    {
+        m_Subject = set;
+    }
 
-	private java.lang.String m_CreatedTimestamp = null; 
+    private java.lang.String m_CreatedTimestamp = null;
 
-	public java.lang.String getCreatedTimestamp()
-	{
-		return m_CreatedTimestamp;
-	}
+    public java.lang.String getCreatedTimestamp()
+    {
+        return m_CreatedTimestamp;
+    }
 
-	public void setCreatedTimestamp(java.lang.String set)
-	{
-		m_CreatedTimestamp = set;
-	}
+    public void setCreatedTimestamp(java.lang.String set)
+    {
+        m_CreatedTimestamp = set;
+    }
 
-	private com.hello2morrow.ddaexample.business.request.dsi.StateDsi m_State = null;
+    private com.hello2morrow.ddaexample.business.request.dsi.StateDsi m_State = null;
 
-	public com.hello2morrow.ddaexample.business.request.dsi.StateDsi getState()
-	{
-		return m_State;
-	}
+    public com.hello2morrow.ddaexample.business.request.dsi.StateDsi getState()
+    {
+        return m_State;
+    }
 
-	public void setState(com.hello2morrow.ddaexample.business.request.dsi.StateDsi set)
-	{
-		m_State = set;
-	}
+    public void setState(com.hello2morrow.ddaexample.business.request.dsi.StateDsi set)
+    {
+        m_State = set;
+    }
 
 }

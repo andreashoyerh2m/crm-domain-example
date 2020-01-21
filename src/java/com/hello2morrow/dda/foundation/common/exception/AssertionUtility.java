@@ -7,7 +7,7 @@ final public class AssertionUtility
 {
     private AssertionUtility()
     {
-        //Only to make the ctor unaccessible
+        // Only to make the ctor unaccessible
     }
 
     public static boolean checkArray(Object[] array)

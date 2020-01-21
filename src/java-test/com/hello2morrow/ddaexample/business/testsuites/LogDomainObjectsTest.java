@@ -9,7 +9,7 @@ import com.hello2morrow.dda.business.common.dsi.DomainObjectIf;
 
 public abstract class LogDomainObjectsTest extends TestCase
 {
-    private static Logger s_Logger = Logger.getLogger(LogDomainObjectsTest.class);
+    private static Logger s_Logger = LogManager.getLogger(LogDomainObjectsTest.class);
 
     public void testLogDomainObjects()
     {

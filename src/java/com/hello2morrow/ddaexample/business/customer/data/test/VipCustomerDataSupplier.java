@@ -4,20 +4,19 @@
 
 package com.hello2morrow.ddaexample.business.customer.data.test;
 
-import com.hello2morrow.ddaexample.business.customer.dsi.VipCustomerDsi;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectId;
+import com.hello2morrow.ddaexample.business.customer.dsi.VipCustomerDsi;
 
-public class VipCustomerDataSupplier extends com.hello2morrow.ddaexample.business.customer.data.test.CustomerDataSupplier
-	implements VipCustomerDsi
+public class VipCustomerDataSupplier extends com.hello2morrow.ddaexample.business.customer.data.test.CustomerDataSupplier implements VipCustomerDsi
 {
-	protected VipCustomerDataSupplier(DomainObjectId id)
-	{
-		super(id);
-	}
+    protected VipCustomerDataSupplier(DomainObjectId id)
+    {
+        super(id);
+    }
 
-	public VipCustomerDataSupplier()
-	{
-		super(new DomainObjectId(VipCustomerDsi.class));
-	}
+    public VipCustomerDataSupplier()
+    {
+        super(new DomainObjectId(VipCustomerDsi.class));
+    }
 
 }

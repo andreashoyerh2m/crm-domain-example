@@ -8,17 +8,17 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.hello2morrow.dda.foundation.common.exception.ExceptionUtility;
 
 /**
- * Creates the manager implementations for the manager interfaces. One
- * implementation can serve n interfaces.
+ * Creates the manager implementations for the manager interfaces. One implementation can serve n interfaces.
  */
 public final class DataManagerFactory
 {
-    private static Logger s_Logger = Logger.getLogger(DataManagerFactory.class);
+    private static Logger s_Logger = LogManager.getLogger(DataManagerFactory.class);
     private static DataManagerFactory s_Instance = null;
     private Map m_DataSupplierInterfaceClassToDataManagerImplementation = new HashMap();
     private Map m_ManagerImplementationClassNameToManagerImplementation = new HashMap();
@@ -30,8 +30,7 @@ public final class DataManagerFactory
         InputStream in = DataManagerFactory.class.getResourceAsStream(properties);
         if (in == null)
         {
-            throw new MissingResourceException("properties file not found = " + properties,
-                            DataManagerFactory.class.getName(), properties);
+            throw new MissingResourceException("properties file not found = " + properties, DataManagerFactory.class.getName(), properties);
         }
         Properties loadedProperties = new Properties();
         loadedProperties.load(in);
@@ -85,10 +84,8 @@ public final class DataManagerFactory
 
         if (manager == null)
         {
-            s_Logger.debug("do data manager implementation registered for data supplier interface '"
-                            + dataSupplierInterfaceClass.getName() + "'");
-            assert false : "no data manager implementation registered for data supplier interface '"
-                            + dataSupplierInterfaceClass.getName() + "'";
+            s_Logger.debug("do data manager implementation registered for data supplier interface '" + dataSupplierInterfaceClass.getName() + "'");
+            assert false : "no data manager implementation registered for data supplier interface '" + dataSupplierInterfaceClass.getName() + "'";
         }
 
         return manager;
@@ -101,8 +98,7 @@ public final class DataManagerFactory
         assert dataManagerImplClassName != null;
         assert dataManagerImplClassName.length() > 0;
 
-        s_Logger.debug("trying to create the data manager '" + dataManagerImplClassName + "' for '"
-                        + dataSupplierInterfaceClassName + "'");
+        s_Logger.debug("trying to create the data manager '" + dataManagerImplClassName + "' for '" + dataSupplierInterfaceClassName + "'");
 
         try
         {
@@ -118,7 +114,8 @@ public final class DataManagerFactory
             }
             else
             {
-                s_Logger.debug("data manager implementation already registered - reusing (data supplier interface class name/data manager implementation class name) = "
+                s_Logger.debug(
+                        "data manager implementation already registered - reusing (data supplier interface class name/data manager implementation class name) = "
                                 + dataSupplierInterfaceClassName + "/" + dataManagerImplClassName);
 
                 m_DataSupplierInterfaceClassToDataManagerImplementation.put(dataSupplierInterfaceClass, dataManager);
@@ -149,10 +146,9 @@ public final class DataManagerFactory
         assert managerImplementation != null;
 
         s_Logger.debug("data manager implementation created (Data supplier interface class name/Manager implementation class name) = "
-                        + dataSupplierInterfaceClass.getName() + "/" + managerImplementation.getClass().getName());
+                + dataSupplierInterfaceClass.getName() + "/" + managerImplementation.getClass().getName());
 
-        m_ManagerImplementationClassNameToManagerImplementation.put(managerImplementation.getClass().getName(),
-                        managerImplementation);
+        m_ManagerImplementationClassNameToManagerImplementation.put(managerImplementation.getClass().getName(), managerImplementation);
 
         m_DataSupplierInterfaceClassToDataManagerImplementation.put(dataSupplierInterfaceClass, managerImplementation);
     }

@@ -13,7 +13,7 @@ public final class DateUtil
 
     private DateUtil()
     {
-        //Just to make it unaccesible
+        // Just to make it unaccesible
     }
 
     public static Date convert(String date) throws BusinessException

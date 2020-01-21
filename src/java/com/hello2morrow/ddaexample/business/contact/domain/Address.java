@@ -12,20 +12,20 @@ import com.hello2morrow.ddaexample.integration.contact.esi.AddressCheckEsi;
 public final class Address extends DomainObjectWithDataSupplier
 {
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public Address(AddressDsi dataSupplier, DataSupplierReadMarker marker)
     {
         super(dataSupplier, marker);
-        
+
     }
 
-//    public void setPerson(Person p)
-//    {
-//        
-//    }
+    //    public void setPerson(Person p)
+    //    {
+    //        
+    //    }
     /**
-     * create a new transient or persistent address 
+     * create a new transient or persistent address
      */
     public Address(int storageType)
     {
@@ -95,7 +95,6 @@ public final class Address extends DomainObjectWithDataSupplier
     public boolean isSameAddress(Address address)
     {
         assert address != null;
-        return getStreet().equals(address.getStreet()) && getCity().equals(address.getCity())
-                        && getZipCode().equals(address.getZipCode());
+        return getStreet().equals(address.getStreet()) && getCity().equals(address.getCity()) && getZipCode().equals(address.getZipCode());
     }
 }

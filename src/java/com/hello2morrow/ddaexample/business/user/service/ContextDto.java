@@ -6,7 +6,6 @@ import java.util.List;
 import com.hello2morrow.dda.business.common.service.Dto;
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 
-
 public final class ContextDto extends Dto
 {
     private final ObjectIdIf m_UserRef;

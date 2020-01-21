@@ -19,8 +19,7 @@ public final class RequestForTestDrive extends Request
 
     public RequestForTestDrive()
     {
-        super((RequestDsi) getDataManager(RequestForTestDriveDsi.class).createDataSupplier(
-                        RequestForTestDriveDsi.class, true));
+        super((RequestDsi) getDataManager(RequestForTestDriveDsi.class).createDataSupplier(RequestForTestDriveDsi.class, true));
     }
 
     /**

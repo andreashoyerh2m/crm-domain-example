@@ -1,7 +1,6 @@
 package com.hello2morrow.ddaexample.business.common.startup;
 
 import com.hello2morrow.dda.business.common.startup.SetupFactories;
-import com.hello2morrow.ddaexample.business.common.startup.JBStartUpMBean;
 
 public class JBStartUpMBeanImpl implements JBStartUpMBean
 {
@@ -15,7 +14,7 @@ public class JBStartUpMBeanImpl implements JBStartUpMBean
         SetupFactories.cleanUp();
     }
 
-    public int getInt()  throws Exception
+    public int getInt() throws Exception
     {
         // TODO Auto-generated method stub
         return 0;

@@ -7,7 +7,6 @@ import com.hello2morrow.dda.business.common.service.Dto;
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 import com.hello2morrow.dda.foundation.common.exception.AssertionUtility;
 
-
 public final class UserListDto extends Dto
 {
     private Map m_UserNameToEntry = new HashMap();

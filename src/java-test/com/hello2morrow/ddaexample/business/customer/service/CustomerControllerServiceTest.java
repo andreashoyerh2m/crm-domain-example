@@ -14,7 +14,7 @@ import com.hello2morrow.ddaexample.business.user.service.UserControllerServiceIf
 
 public class CustomerControllerServiceTest extends TestCase
 {
-    private static Logger s_Logger = Logger.getLogger(CustomerControllerServiceTest.class);
+    private static Logger s_Logger = LogManager.getLogger(CustomerControllerServiceTest.class);
     private CustomerControllerServiceIf m_CustomerControllerService;
     private UserControllerServiceIf m_UserControllerService;
 

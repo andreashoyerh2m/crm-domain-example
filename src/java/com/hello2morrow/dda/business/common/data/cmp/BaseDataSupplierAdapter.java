@@ -4,7 +4,6 @@ import com.hello2morrow.dda.business.common.dsi.DataSupplierIf;
 import com.hello2morrow.dda.business.common.dsi.DomainObjectIf;
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 
-
 public abstract class BaseDataSupplierAdapter implements DataSupplierIf
 {
     private final DataSupplierIf m_RealSupplier;

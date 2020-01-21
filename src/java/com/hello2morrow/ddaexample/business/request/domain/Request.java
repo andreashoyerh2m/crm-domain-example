@@ -22,7 +22,7 @@ public abstract class Request extends DomainObjectWithDataSupplier
     }
 
     /**
-     * required for creation direct from data source 
+     * required for creation direct from data source
      */
     public Request(RequestDsi dsi, DataSupplierReadMarker marker)
     {

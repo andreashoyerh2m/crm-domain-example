@@ -4,6 +4,8 @@
 
 package com.hello2morrow.ddaexample.business.distributionpartner.dsi;
 
-public interface RequestForInformationDmi extends com.hello2morrow.ddaexample.business.request.dsi.RequestDmi
+import com.hello2morrow.ddaexample.business.request.dsi.RequestDmi;
+
+public interface RequestForInformationDmi extends RequestDmi
 {
 }

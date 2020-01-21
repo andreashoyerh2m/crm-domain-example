@@ -1,10 +1,7 @@
 package com.hello2morrow.ddaexample.business.distributionpartner.controller;
 
-
-import com.hello2morrow.dda.business.common.startup.SetupFactories;
-import org.apache.log4j.Logger;
-
 import com.hello2morrow.dda.business.common.dsi.DomainObjectWithDataSupplier;
+import com.hello2morrow.dda.business.common.startup.SetupFactories;
 import com.hello2morrow.dda.foundation.common.ObjectIdIf;
 import com.hello2morrow.dda.foundation.common.exception.AssertionUtility;
 import com.hello2morrow.dda.foundation.common.exception.BusinessException;
@@ -27,12 +24,15 @@ import com.hello2morrow.ddaexample.business.distributionpartner.service.SalesAss
 import com.hello2morrow.ddaexample.business.user.controller.UserController;
 import com.hello2morrow.ddaexample.business.user.service.ContextDto;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @dda-generate-service
  */
 public final class DistributionPartnerController implements DistributionPartnerControllerServiceIf
 {
-    private static Logger s_Logger = Logger.getLogger(DistributionPartnerController.class);
+    private static Logger s_Logger = LogManager.getLogger(DistributionPartnerController.class);
 
     /**
      * @dda-service ASSIGN_CUSTOMERS_TO_SALES_ASSISTANT_CMD = "DistributionPartner::AssignCustomersToSalesAssistantCmd"
@@ -40,12 +40,11 @@ public final class DistributionPartnerController implements DistributionPartnerC
 
     SetupFactories wrong;
 
-    public void assignCustomersToSalesAssistant(ContextDto contextDto, ObjectIdIf[] customerIds,
-                    ObjectIdIf salesAssistantId) throws BusinessException, TechnicalException
+    public void assignCustomersToSalesAssistant(ContextDto contextDto, ObjectIdIf[] customerIds, ObjectIdIf salesAssistantId)
+            throws BusinessException, TechnicalException
     {
-    	SetupFactories.initialize();
-        UserController.checkPermission(contextDto,
-                        DistributionPartnerControllerServiceIf.ASSIGN_CUSTOMERS_TO_SALES_ASSISTANT_CMD);
+        SetupFactories.initialize();
+        UserController.checkPermission(contextDto, DistributionPartnerControllerServiceIf.ASSIGN_CUSTOMERS_TO_SALES_ASSISTANT_CMD);
         assert AssertionUtility.checkArray(customerIds);
         assert salesAssistantId != null;
 
@@ -60,18 +59,18 @@ public final class DistributionPartnerController implements DistributionPartnerC
         }
     }
 
-    public void doodle(/*SetupFactories f,*/ int x)
+    public void doodle(/* SetupFactories f, */ int x)
     {
-        
+
     }
+
     /**
      * @dda-service RETRIEVE_ASSIGNED_CUSTOMERS_FOR_SALES_ASSISTANT_CMD = "DistributionPartner::RetrieveAssignedCustomersForSalesAssistantCmd"
      */
     public CustomerDto[] retrieveAssignedCustomersForSalesAssistant(ContextDto contextDto, ObjectIdIf salesAssistantId)
-                    throws BusinessException, TechnicalException
+            throws BusinessException, TechnicalException
     {
-        UserController.checkPermission(contextDto,
-                        DistributionPartnerControllerServiceIf.RETRIEVE_ASSIGNED_CUSTOMERS_FOR_SALES_ASSISTANT_CMD);
+        UserController.checkPermission(contextDto, DistributionPartnerControllerServiceIf.RETRIEVE_ASSIGNED_CUSTOMERS_FOR_SALES_ASSISTANT_CMD);
         assert salesAssistantId != null;
 
         SalesAssistant salesAssistant = (SalesAssistant) DomainObjectWithDataSupplier.findByObjectId(salesAssistantId);
@@ -82,16 +81,14 @@ public final class DistributionPartnerController implements DistributionPartnerC
     /**
      * @dda-service CREATE_SALES_ASSISTANT_CMD = "DistributionPartner::CreateSalesAssistantCmd"
      */
-    public ObjectIdIf createSalesAssistant(ContextDto contextDto, SalesAssistantDto salesAssistantDto,
-                    AddressDto addressDto) throws BusinessException, TechnicalException
+    public ObjectIdIf createSalesAssistant(ContextDto contextDto, SalesAssistantDto salesAssistantDto, AddressDto addressDto)
+            throws BusinessException, TechnicalException
     {
         UserController.checkPermission(contextDto, DistributionPartnerControllerServiceIf.CREATE_SALES_ASSISTANT_CMD);
         assert salesAssistantDto != null;
         assert addressDto != null;
-        salesAssistantDto.validate(DistributionPartnerControllerServiceIf.class,
-                        DistributionPartnerControllerServiceIf.CREATE_SALES_ASSISTANT_CMD);
-        addressDto.validate(DistributionPartnerControllerServiceIf.class,
-                        DistributionPartnerControllerServiceIf.CREATE_SALES_ASSISTANT_CMD);
+        salesAssistantDto.validate(DistributionPartnerControllerServiceIf.class, DistributionPartnerControllerServiceIf.CREATE_SALES_ASSISTANT_CMD);
+        addressDto.validate(DistributionPartnerControllerServiceIf.class, DistributionPartnerControllerServiceIf.CREATE_SALES_ASSISTANT_CMD);
 
         Address address = new Address(DomainObjectWithDataSupplier.TRANSIENT);
         AddressDtoMapper.mapDtoToDomainObject(addressDto, address, false);
@@ -105,8 +102,8 @@ public final class DistributionPartnerController implements DistributionPartnerC
             throw new BusinessException("address not valid");
         }
 
-        SalesAssistant[] found = SalesAssistant.findSalesAssistantByFirstNameAndLastName(
-                        salesAssistantDto.getFirstName(), salesAssistantDto.getLastName());
+        SalesAssistant[] found = SalesAssistant.findSalesAssistantByFirstNameAndLastName(salesAssistantDto.getFirstName(),
+                salesAssistantDto.getLastName());
         if (found.length > 0)
         {
             for (int i = 0; i < found.length; i++)
@@ -116,8 +113,8 @@ public final class DistributionPartnerController implements DistributionPartnerC
                 if (foundCustomerAddress.isSameAddress(address))
                 {
                     address.delete();
-                    throw new BusinessException("sales assistant already exists - (firstname/lastname) = "
-                                    + salesAssistantDto.getFirstName() + " " + salesAssistantDto.getLastName());
+                    throw new BusinessException("sales assistant already exists - (firstname/lastname) = " + salesAssistantDto.getFirstName() + " "
+                            + salesAssistantDto.getLastName());
                 }
             }
         }
@@ -133,13 +130,11 @@ public final class DistributionPartnerController implements DistributionPartnerC
      * @dda-service CREATE_REQUEST_FOR_INFORMATION_CMD = "DistributionPartner::CreateRequestForInformationCmd"
      */
     public ObjectIdIf createRequestForInformation(ContextDto contextDto, RequestForInformationDto requestDto)
-                    throws BusinessException, TechnicalException
+            throws BusinessException, TechnicalException
     {
         assert requestDto != null;
-        UserController.checkPermission(contextDto,
-                        DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_INFORMATION_CMD);
-        requestDto.validate(DistributionPartnerControllerServiceIf.class,
-                        DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_INFORMATION_CMD);
+        UserController.checkPermission(contextDto, DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_INFORMATION_CMD);
+        requestDto.validate(DistributionPartnerControllerServiceIf.class, DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_INFORMATION_CMD);
         RequestForInformation request = new RequestForInformation();
         RequestForInformationDtoMapper.mapDtoToDomainObject(requestDto, request, false);
         return request.getObjectId();
@@ -148,13 +143,11 @@ public final class DistributionPartnerController implements DistributionPartnerC
     /**
      * @dda-service CREATE_REQUEST_FOR_OFFER_CMD = "DistributionPartner::CreateRequestForOfferCmd"
      */
-    public ObjectIdIf createRequestForOffer(ContextDto contextDto, RequestForOfferDto requestDto)
-                    throws BusinessException, TechnicalException
+    public ObjectIdIf createRequestForOffer(ContextDto contextDto, RequestForOfferDto requestDto) throws BusinessException, TechnicalException
     {
         assert requestDto != null;
         UserController.checkPermission(contextDto, DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_OFFER_CMD);
-        requestDto.validate(DistributionPartnerControllerServiceIf.class,
-                        DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_OFFER_CMD);
+        requestDto.validate(DistributionPartnerControllerServiceIf.class, DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_OFFER_CMD);
         RequestForOffer request = new RequestForOffer();
         RequestForOfferDtoMapper.mapDtoToDomainObject(requestDto, request, false);
         return request.getObjectId();
@@ -163,14 +156,11 @@ public final class DistributionPartnerController implements DistributionPartnerC
     /**
      * @dda-service CREATE_REQUEST_FOR_TEST_DRIVE_CMD = "DistributionPartner::CreateRequestForTestDriveCmd"
      */
-    public ObjectIdIf createRequestForTestDrive(ContextDto contextDto, RequestForTestDriveDto requestDto)
-                    throws BusinessException, TechnicalException
+    public ObjectIdIf createRequestForTestDrive(ContextDto contextDto, RequestForTestDriveDto requestDto) throws BusinessException, TechnicalException
     {
         assert requestDto != null;
-        UserController.checkPermission(contextDto,
-                        DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_TEST_DRIVE_CMD);
-        requestDto.validate(DistributionPartnerControllerServiceIf.class,
-                        DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_TEST_DRIVE_CMD);
+        UserController.checkPermission(contextDto, DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_TEST_DRIVE_CMD);
+        requestDto.validate(DistributionPartnerControllerServiceIf.class, DistributionPartnerControllerServiceIf.CREATE_REQUEST_FOR_TEST_DRIVE_CMD);
 
         RequestForTestDrive request = new RequestForTestDrive();
         RequestForTestDriveDtoMapper.mapDtoToDomainObject(requestDto, request, false);

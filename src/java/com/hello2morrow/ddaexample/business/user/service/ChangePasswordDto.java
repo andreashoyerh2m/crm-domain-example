@@ -4,7 +4,6 @@ import com.hello2morrow.dda.business.common.service.Dto;
 import com.hello2morrow.dda.foundation.common.EncryptUtil;
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
-
 public final class ChangePasswordDto extends Dto
 {
     private transient String m_CurrentPwd;
