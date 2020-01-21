@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.log4j.Logger;
 
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
 
 import com.hello2morrow.dda.foundation.common.exception.TechnicalException;
 
@@ -61,7 +61,7 @@ public final class EncryptUtil
         }
 
         byte raw[] = md.digest();
-        String hash = (new BASE64Encoder()).encode(raw);
+        String hash = Base64.getEncoder().encodeToString(raw);
         return hash;
     }
 }
